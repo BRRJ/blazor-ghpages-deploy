@@ -30,7 +30,6 @@ jobs:
         with:
           dotnet-version: 8.0.x
 
-
       - name: Install .NET Wasm Tools
         run: dotnet workload install wasm-tools
 
@@ -42,6 +41,10 @@ jobs:
 
       - name: Publish .NET
         run: dotnet publish BlazorDeploy.csproj -c:Release -o docs --nologo
+
+      # change the base-tag in index.html '/' to match GitHub Pages repository subdirectory
+      #- name: Change base-tag in index.html
+      #  run: sed -i 's/<base href="\/" \/>/<base href="\/BlazorDeploy\/" \/>/g' build/wwwroot/index.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
